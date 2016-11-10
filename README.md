@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This is an example of how you can quickly get up and running with Docker to develop a PHP application.
+This is an example of how you can quickly get up and running with Docker to develop a PHP/Laravel application.
 
 ## How to use
 
