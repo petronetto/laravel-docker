@@ -28,7 +28,7 @@ At this point, we've created containers and have them up and running. However, w
 # From directory "laravel-docker"
 # Maybe you need delete some files created by supervisor.d
 # Create a Laravel application
-docker exec -it php composer create-project laravel/laravel application
+docker exec -it php composer create-project laravel/laravel .
 
 docker exec -it php composer require predis/predis
 
