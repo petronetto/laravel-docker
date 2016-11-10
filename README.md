@@ -24,22 +24,13 @@ At this point, we've created containers and have them up and running. However, w
 
 ### 2. Create a new Laravel application
 
+> Maybe you need delete some files created by supervisor.d
 ```bash
 # From directory "laravel-docker"
 # Create a Laravel application
-docker run -it --rm \
-    -v $(pwd):/opt \
-    -w /opt \
-    --network=phpapp_appnet \
-    petronetto/php-nginx \
-    composer create-project laravel/laravel application
+docker exec -it php composer create-project laravel/laravel application
 
-docker run -it --rm \
-    -v $(pwd)/application:/opt \
-    -w /opt \
-    --network=phpapp_appnet \
-    petronetto/php-nginx \
-    composer require predis/predis
+docker exec -it php composer require predis/predis
 
 # Restart required to ensure
 # app files shares correctly
@@ -73,7 +64,7 @@ REDIS_PORT=6379
 **NOTE**: If you're not running Docker Mac/Windows (which run Docker in a small virtualized layer), you may need to set permissions on the shared directories that Laravel needs to write to. The following will let Laravel write the storage and bootstrap directories:
 
 ```bash
-# From directory php-app
+# From directory laravel-docker
 chmod -R o+rw application/bootstrap application/storage
 ```
 
@@ -83,18 +74,8 @@ If you'd like, we can add Laravel's Auth scaffolding as well. To do that, we nee
 
 ```bash
 # Scaffold authentication views/routes
-docker run -it --rm \
-    -v $(pwd)/application:/opt \
-    -w /opt \
-    --network=phpapp_appnet \
-    petronetto/php-nginx \
-    php artisan make:auth
+docker exec -it php php artisan make:auth
 
 # Run migrations for auth scaffolding
-docker run -it --rm \
-    -v $(pwd)/application:/opt \
-    -w /opt \
-    --network=phpapp_appnet \
-    petronetto/php-nginx \
-    php artisan migrate
+docker exec -it php php artisan migrate
 ```
