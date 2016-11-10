@@ -1,0 +1,37 @@
+version: '2'
+services:
+  php:
+    container_name: php
+    image: petronetto/php-nginx
+    volumes:
+     - ./application:/var/www/html
+    networks:
+     - appnet
+    ports:
+     - "80:80"
+     - "443:443"
+  database:
+    container_name: database
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+    volumes:
+     - ./data:/var/lib/mysql
+    networks:
+     - appnet
+    ports:
+     - "3306:3306"
+  redis:
+    container_name: redis
+    image: redis:alpine
+    networks:
+     - appnet
+networks:
+  appnet:
+    driver: "bridge"
+volumes:
+  data:
+    driver: "local"
