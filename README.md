@@ -26,7 +26,6 @@ At this point, we've created containers and have them up and running. However, w
 
 ```bash
 # From directory "laravel-docker"
-# Maybe you need delete some files created by supervisor.d
 # Create a Laravel application
 docker exec -it php composer create-project laravel/laravel .
 
@@ -55,6 +54,12 @@ QUEUE_DRIVER=sync
 REDIS_HOST=redis
 REDIS_PASSWORD=null
 REDIS_PORT=6379
+```
+
+In Linux maybe you need set ownership to application folder
+```bash
+# From directory laravel-docker
+chown -R $(whoami) application/
 ```
 
 > If you already have an application, you can move it to the `application` directory here. Else, you can adjust the shared volume file paths within the `docker-compose.yml` file.
