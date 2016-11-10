@@ -5,8 +5,9 @@ services:
     image: petronetto/php-nginx
     volumes:
      - ./application:/var/www/html
-    networks:
-     - appnet
+    links:
+     - database
+     - redis
     ports:
      - "80:80"
      - "443:443"
@@ -20,18 +21,11 @@ services:
       MYSQL_PASSWORD: secret
     volumes:
      - ./data:/var/lib/mysql
-    networks:
-     - appnet
     ports:
      - "3306:3306"
   redis:
     container_name: redis
     image: redis:alpine
-    networks:
-     - appnet
-networks:
-  appnet:
-    driver: "bridge"
 volumes:
   data:
     driver: "local"
