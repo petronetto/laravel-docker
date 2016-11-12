@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This is an example of how you can quickly get up and running with Docker to develop a PHP/Laravel application.
+This is an containerized PHP application for Laravel Development, the PHP container is based on a very lightweight container ([phusion/baseimage-docker](http://phusion.github.io/baseimage-docker/)), that is a minimal Ubuntu base image modified for Docker-friendliness. _Baseimage-docker **only consumes 6 MB RAM** and is much powerful than Busybox or Alpine. See why below._
 
 ## How to use
 
@@ -13,10 +13,8 @@ This is an example of how you can quickly get up and running with Docker to deve
 git clone https://github.com/petronetto/laravel-docker.git
 cd laravel-docker
 
-# Start the app, run containers
-#   in the background
-# This will download and build the images
-#   the first time you run this
+# Start the app, run containers in the background
+# This will download and build the images the first time you run this
 docker-compose up -d
 ```
 
