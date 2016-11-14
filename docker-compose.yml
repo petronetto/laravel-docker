@@ -4,7 +4,7 @@ services:
     container_name: php
     image: petronetto/php-nginx:laravel
     volumes:
-     - ./application:/var/www/html
+     - ./application:/var/www/app
     links:
      - database
      - redis
