@@ -25,9 +25,17 @@ At this point, we've created containers and have them up and running. However, w
 ```bash
 # From directory "laravel-docker"
 # Create a Laravel application
-docker exec -it php composer create-project laravel/laravel .
+docker run -it --rm \
+           -v $(pwd)/application:/var/www/app \
+           -w /var/www/app \
+           petronetto/php-nginx:laravel \
+           composer create-project laravel/laravel .
 
-docker exec -it php composer require predis/predis
+docker run -it --rm \
+           -v $(pwd)/application:/var/www/app \
+           -w /var/www/app \
+           petronetto/php-nginx:laravel \
+           composer require predis/predis
 
 # Restart required to ensure
 # app files shares correctly
