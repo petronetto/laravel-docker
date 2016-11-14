@@ -2,7 +2,7 @@ version: '2'
 services:
   php:
     container_name: php
-    image: petronetto/php-nginx
+    image: petronetto/php-nginx:laravel
     volumes:
      - ./application:/var/www/html
     links:
