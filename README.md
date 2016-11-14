@@ -65,7 +65,7 @@ REDIS_PORT=6379
 In Linux maybe you need set ownership to application folder
 ```bash
 # From directory laravel-docker
-sudo chown -R $(whoami) application/
+sudo chown -R $(whoami) $(pwd)
 ```
 
 > If you already have an application, you can move it to the `application` directory here. Else, you can adjust the shared volume file paths within the `docker-compose.yml` file.
