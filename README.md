@@ -40,6 +40,10 @@ docker run -it --rm \
 # Restart required to ensure
 # app files shares correctly
 docker-compose restart
+
+# In Linux/MacOs, mayb you need run the follow
+# command to set directory ownership to you
+sudo chown -R $USER:$USER .
 ```
 
 Edit the `application/.env` file to have correct settings for our containers. Adjust the following as necessary:
@@ -60,12 +64,6 @@ QUEUE_DRIVER=sync
 REDIS_HOST=redis
 REDIS_PASSWORD=null
 REDIS_PORT=6379
-```
-
-In Linux maybe you need set ownership to application folder
-```bash
-# From directory laravel-docker
-sudo chown -R $(whoami) $(pwd)
 ```
 
 > If you already have an application, you can move it to the `application` directory here. Else, you can adjust the shared volume file paths within the `docker-compose.yml` file.
