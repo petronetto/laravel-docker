@@ -83,8 +83,8 @@ If you'd like, we can add Laravel's Auth scaffolding as well. To do that, we nee
 
 ```bash
 # Scaffold authentication views/routes
-docker exec -it php php artisan make:auth
+docker exec -it you-container php artisan make:auth
 
 # Run migrations for auth scaffolding
-docker exec -it php php artisan migrate
+docker exec -it you-container php artisan migrate
 ```

@@ -1,7 +1,7 @@
 version: '2'
 services:
   php:
-    container_name: php
+    container_name: "${PROJECT_NAME}php"
     image: petronetto/php-nginx:laravel
     volumes:
      - ./application:/var/www/app
@@ -9,10 +9,10 @@ services:
      - database
      - redis
     ports:
-     - "80:80"
-     - "443:443"
+     - "80:${HTTP_PORT}"
+     - "443:${HTTPS_PORT}"
   database:
-    container_name: database
+    container_name: "${PROJECT_NAME}database"
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: secret
@@ -22,9 +22,9 @@ services:
     volumes:
      - ./data:/var/lib/mysql
     ports:
-     - "3306:3306"
+     - "3306:${MYSQL_PORT}"
   redis:
-    container_name: redis
+    container_name: "${PROJECT_NAME}redis"
     image: redis:alpine
 volumes:
   data:
