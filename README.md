@@ -50,7 +50,7 @@ Edit the `application/.env` file to have correct settings for our containers. Ad
 
 ```
 DB_CONNECTION=mysql
-DB_HOST=database
+DB_HOST=docker-database
 DB_PORT=3306
 DB_DATABASE=homestead
 DB_USERNAME=homestead
@@ -61,7 +61,7 @@ CACHE_DRIVER=redis
 SESSION_DRIVER=redis
 QUEUE_DRIVER=sync
 
-REDIS_HOST=redis
+REDIS_HOST=docker-redis
 REDIS_PASSWORD=null
 REDIS_PORT=6379
 ```
@@ -83,8 +83,8 @@ If you'd like, we can add Laravel's Auth scaffolding as well. To do that, we nee
 
 ```bash
 # Scaffold authentication views/routes
-docker exec -it you-container php artisan make:auth
+docker exec -it docker-php php artisan make:auth
 
 # Run migrations for auth scaffolding
-docker exec -it you-container php artisan migrate
+docker exec -it docker-php php artisan migrate
 ```
