@@ -41,9 +41,9 @@ docker run -it --rm \
 # app files shares correctly
 docker-compose restart
 
-# In Linux/MacOs, mayb you need run the follow
+# In Linux, maybe you need run the follow
 # command to set directory ownership to you
-sudo chown -R $USER:$USER .
+sudo chown -R $USER:$USER . 
 ```
 
 Edit the `application/.env` file to have correct settings for our containers. Adjust the following as necessary:
