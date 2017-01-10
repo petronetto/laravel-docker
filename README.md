@@ -4,6 +4,14 @@
 
 This is an containerized PHP application for Laravel Development, the PHP container is based on a very lightweight container ([phusion/baseimage-docker](http://phusion.github.io/baseimage-docker/)), that is a minimal Ubuntu base image modified for Docker-friendliness. _Baseimage-docker **only consumes 6 MB RAM** and is much powerful than Busybox or Alpine._
 
+## What is included
+
+This docker-compose contains the basic pieces to build an applications with PHP.
+ - PHP7 with Nginx
+ - Debug container
+ - MySQL 5.7
+ - Redis
+
 ## How to use
 
 ### 1. Get the files and spin up containers
@@ -95,3 +103,39 @@ docker exec -it docker-php php artisan make:auth
 # Run migrations for auth scaffolding
 docker exec -it docker-php php artisan migrate
 ```
+
+## Running the Debug container
+
+The Debug container is configured to run the file that bootstrap applications in folder `/var/www/html/public`, because I use Laravel by default, so, if you don't use a framework that bootstrap the application in this folder, you must put your source files there.
+To the debug works, you must:
+1) Set your IP address in `DEBUG_HOST` variable in`.env` file. Optionaly, you can change the debug port using `DEBUG_PORT`, by default will run in port `8989`.
+
+Sample configuration:
+```
+# .env file
+DEBUG_HOST=192.168.25.2 # your local ip address
+DEBUG_PORT=8989 # the port to run the debug eg.: http://localhost:8989
+```
+
+2) Configure your editor/IDE tor map where is the local source and where is the remote source.
+
+To debug in VS Code, just put this config in your lauch.json:
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "XDebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9000,
+            // Path to your source in container
+            "serverSourceRoot": "/var/www/html",
+            // Path to your local source
+            "localSourceRoot": "${workspaceRoot}/src"
+        }
+    ]
+}
+```
+
+Enjoy!

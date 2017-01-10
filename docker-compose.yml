@@ -3,7 +3,7 @@
 version: '2'
 services:
   php:
-    container_name: "${APP_NAME}-php"
+    container_name: ${APP_NAME}-php
     image: petronetto/php-nginx
     volumes:
      - ./src:/var/www/src
@@ -11,23 +11,35 @@ services:
      - database
      - redis
     ports:
-     - "${HTTP_PORT}:80"
-     - "${HTTPS_PORT}:443"
+     - ${HTTP_PORT}:80
+     - ${HTTPS_PORT}:443
   database:
-    container_name: "${APP_NAME}-database"
+    container_name: ${APP_NAME}-database
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}" 
-      MYSQL_DATABASE: "${MYSQL_DATABASE}" 
-      MYSQL_USER: "${MYSQL_USER}" 
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}" 
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
+      MYSQL_USER: ${MYSQL_USER} 
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
      - ./data:/var/lib/mysql
     ports:
-     - "${MYSQL_PORT}:3306"
+     - ${MYSQL_PORT}:3306
   redis:
-    container_name: "${APP_NAME}-redis"
+    container_name: ${APP_NAME}-redis
     image: redis:alpine
+  debug:
+    container_name: ${APP_NAME}-debug
+    image: petronetto/php-debug
+    environment:
+      XDEBUG_HOST: ${DEBUG_HOST}
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - ${DEBUG_PORT}:80
+    links:
+     - database
+     - redis
 volumes:
   data:
-    driver: "local"
+    driver: local
