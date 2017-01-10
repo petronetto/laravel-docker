@@ -108,6 +108,7 @@ docker exec -it docker-php php artisan migrate
 
 The Debug container is configured to run the file that bootstrap applications in folder `/var/www/html/public`, because I use Laravel by default, so, if you don't use a framework that bootstrap the application in this folder, you must put your source files there.
 To the debug works, you must:
+
 1) Set your IP address in `DEBUG_HOST` variable in`.env` file. Optionaly, you can change the debug port using `DEBUG_PORT`, by default will run in port `8989`.
 
 Sample configuration:
