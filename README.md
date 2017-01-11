@@ -139,4 +139,7 @@ To debug in VS Code, just put this config in your lauch.json:
 }
 ```
 
+Check the Sublime and PHPStorm configs [here](https://github.com/Petronetto/php-debug)
+
+
 Enjoy!
