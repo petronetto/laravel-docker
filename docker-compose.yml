@@ -4,6 +4,8 @@ version: '2'
 services:
   php:
     container_name: ${APP_NAME}-php
+    # Image with Alpine instead Ubuntu
+    # image: petronetto/php-nginx-alpine
     image: petronetto/php-nginx
     volumes:
      - ./src:/var/www/src
