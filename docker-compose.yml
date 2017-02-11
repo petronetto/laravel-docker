@@ -7,6 +7,7 @@ services:
     # Image with Alpine instead Ubuntu
     # image: petronetto/php-nginx-alpine
     image: petronetto/php-nginx
+    restart: always
     volumes:
      - ./src:/var/www/src
     links:
@@ -18,11 +19,14 @@ services:
   database:
     container_name: ${APP_NAME}-database
     image: mysql:5.7
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
       MYSQL_DATABASE: ${MYSQL_DATABASE} 
       MYSQL_USER: ${MYSQL_USER} 
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    # Limit buffer size to avoid MySQL consume all memory in low-cost servers
+    command: mysqld --innodb-buffer-pool-size=64M
     volumes:
      - ./data:/var/lib/mysql
     ports:
@@ -30,9 +34,11 @@ services:
   redis:
     container_name: ${APP_NAME}-redis
     image: redis:alpine
+    restart: always
   debug:
     container_name: ${APP_NAME}-debug
     image: petronetto/php-debug
+    restart: always
     environment:
       XDEBUG_HOST: ${DEBUG_HOST}
     volumes:
