@@ -50,7 +50,7 @@ docker run -it --rm \
            composer require predis/predis
 ```
 
->> In Linux, maybe you need run the follow ommand to set directory ownership to you `sudo chown -R $USER:$USER .`
+> In Linux, maybe you need run the follow ommand to set directory ownership to you `sudo chown -R $USER:$USER .`
 
 Edit the `app/.env` file to have correct settings for our containers. Adjust the following as necessary:
 
